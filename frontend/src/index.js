@@ -1,0 +1,30 @@
+import React from "react";
+import { createRoot } from "react-dom/client";
+import App from "./App";
+import { Provider } from "react-redux";
+import store from "./Store";
+import { Provider as AlertProvider, positions, transitions } from "react-alert";
+import AlertTemplate from "react-alert-template-basic";
+
+const options = {
+  position: positions.BOTTOM_CENTER,
+  timeout: 5000,
+  transition: transitions.SCALE,
+};
+
+// Get the container where you want to render your app
+const container = document.getElementById("root");
+
+// Create a root
+const root = createRoot(container);
+
+// Initial render
+root.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <AlertProvider template={AlertTemplate} {...options}>
+        <App />
+      </AlertProvider>
+    </Provider>
+  </React.StrictMode>
+);
